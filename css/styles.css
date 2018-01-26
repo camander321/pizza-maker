@@ -11,6 +11,11 @@ h1 {
 	font-size: 4em;
 }
 
+h2, h3 {
+	text-align: center;
+	font-weight: bold;
+}
+
 .well {
 	color: white;
 	background-color: #77777799;
@@ -18,10 +23,18 @@ h1 {
 	border-radius: 1em;
 }
 
-#cart {
+#cart, #confirmation, #delivery-info {
 	display: none;
 }
 
 .order-item:hover {
 	cursor: pointer;
+}
+
+.item-info {
+	background-color: #aaaaaa99;
+}
+
+.total {
+	color: green;
 }

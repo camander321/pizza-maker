@@ -12,11 +12,12 @@
   
     <div class="container">
     <br>
-      <div class="row well">
+      <div class="row well" id="title">
         <h1>Pizza Maker</h1>
       </div>
-      <form id="form">
-        <div class="row well">
+      
+      <div class="row well" id="pizza-maker">
+        <form id="order-form">
           <div class="form-group">
             <div id="topping-list"></div>
           </div>
@@ -34,10 +35,51 @@
           <div class="col-md-6">
             <button type="submit" class="btn btn-success form-control">Add To Cart!</button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
       
-      <div class="row well" id="cart"></div>
+      
+      <div class="row well" id="cart">
+        <br>
+        <form id="checkout-form">
+          <h2>Your Total is: <span id="price-total">$0.00</span></h2>
+          <div class="form-group col-md-6">
+            <button type="button" id="pickup" class="btn btn-warning form-control">Pick Up</button>
+          </div>
+          <div class="form-group col-md-6">
+            <button type="button" id="delivery" class="btn btn-info form-control">Delivery</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="row well" id="delivery-info">
+        <form id="address-form">
+          <div class="form-group">
+          
+            <div class="col-md-4">
+              <label for="name">Name<input class="form-control" type="text" id="name"></label>
+            </div>
+            
+            <div class="col-md-4">
+              <label for="phone">Phone Number<input class="form-control" type="tel" id="phone"></label>
+            </div>
+            
+            <div class="col-md-4">
+              <label for="address">Address<input class="form-control" type="text" id="address"></label>
+            </div>
+   
+            <div class="col-md-12">
+              <button type="button" id="address-btn" class="btn btn-success form-control">Bring Me Pizza!</button>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+      
+      <div class="row well" id="confirmation">
+        <h2>Thank You!</h2>
+        <h3>Your order has been placed!</h3>
+      </div>
       
     </div>
 
