@@ -11,7 +11,7 @@ function Pizza() {
 		this.toppings.push(topping);
 	}
 
-	Pizza.prototype.getPrice = function() {
+	Pizza.prototype.getBasePrice = function() {
 		var price = 0;
 		switch(this.size) {
 			case "Small":
@@ -29,8 +29,21 @@ function Pizza() {
 			price += t.price;
 		});
 		
-		return "$" + price.toFixed(2);
+		return  price;
 	}
+	
+	Pizza.prototype.getTotal = function() {
+		var price = this.getBasePrice();
+		this.toppings.forEach(function(t){
+			price += t.price;
+		});
+		return price;
+	}
+}
+
+function formatDollars(number) {
+	console.log(number + "  " + typeof(number));
+	return "$" + number.toFixed(2);
 }
 
 function getToppings() {
@@ -61,27 +74,42 @@ function showToppings(toppings) {
 	});
 }
 
+function addPizza(toppings) {
+	
+	var pizza = new Pizza();
+	pizza.size = $("#size").val();
+	$("input:checkbox[name=topping]:checked").each(function(){
+		var idx = parseInt($(this).val());
+		pizza.addTopping(toppings[idx]);
+	});
+	$("#cart").append("<li class='order-item'>" + pizza.size + " Pizza</li>")
+	$("#cart").fadeIn();
+	var item = $(".order-item").last();
+	
+	item.append("<div class='well item-info'></div>");
+	var info = item.children(".well");
+	pizza.toppings.forEach(function(t) {
+		var line = "<li>" + t.name + " " + formatDollars(t.price) + "</li>";
+		info.append(line);
+	});
+	info.append("Total: " + formatDollars(pizza.getTotal()));
+	info.hide();
+	
+	item.click(function() {
+		info.fadeToggle();
+	});
+}
+
 
 
 
 $(document).ready(function() {
+	var pizzaOrder = Array(0);
 	var toppings = getToppings();
 	showToppings(toppings);
 	
 	$("#form").submit(function(event) {
 		event.preventDefault()
-		
-		var pizza = new Pizza();
-		pizza.size = $("#size").val();
-		$("input:checkbox[name=topping]:checked").each(function(){
-			var idx = parseInt($(this).val());
-			pizza.addTopping(toppings[idx]);
-		});
-		$("#cart").append("<li class='order-item'>" + pizza.size + " Pizza</li>")
-		$("#cart").fadeIn();
-		
-		$("order-item").last().click(function() {
-			
-		});
+		pizzaOrder.push(addPizza(toppings));
 	});
 });
