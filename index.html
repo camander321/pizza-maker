@@ -11,14 +11,35 @@
   <body>
   
     <div class="container">
-      <div class="jumbotron">
+    <br>
+      <div class="row well">
         <h1>Pizza Maker</h1>
       </div>
-      <form id="topping-menu">
-        <div class="form-group well">
-          <button type="submit" class="btn btn-success form-control">Make My Pizza!</button>
+      <form id="form">
+        <div class="row well">
+          <div class="form-group">
+            <div id="topping-list"></div>
+          </div>
         </div>
+        
+        <div class="row well">
+          <div class="form-group col-md-6">
+            <select class="form-control" id="size">
+              <option value="sm">Small</option>
+              <option value="md">Medium</option>
+              <option value="lg">Large</option>
+            </select>
+          </div>
+          
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-success form-control">Make My Pizza!</button>
+          </div>
+        
+        </div>
+        
+        
       </form>
+      
     </div>
 
   </body>
